@@ -1,0 +1,44 @@
+On Effective Field Theory in Cosmology - Leonardo Senatore (Stanford)
+    identifying signatures of inflation (of the universe)
+    2 parts of physics - discovering not-yet-known physics, and building simple models/understanding for complex/collective phenomena
+    status of high energy physics
+        can't put quantum + general relativity at high energies
+        what controls hierarchy between planck scale and cosmological constant
+    trying to look into the cosmological past is like trying to look at a cloud - we can only see the photons that come from the last reflection
+    basic picture of big bang
+        universe was hot, then cooled down
+        past universe was very simple, complex structures formed later
+    cosmology reveals itself in the land of high energy physics
+        it is also an encompassing field, needs numerous cooperating fields
+
+    Effective field theory in inflation
+        universe is very homogeneous
+        in inflation, the source of galaxies are quantum effects (quantum changes evolve into macroscopic objects)
+        in the typical background radiation picture, the fluctuations are 
+            primordial
+            scale invariant
+            quite gaussian
+        we need a description that links inflation to these fluctuations
+        the fluctuations are much lower energy scale than the background radiation, so we can throw them out
+        field/wavefunction does *not* have to take the form of the harmonic oscillator
+        these wavefunctions can have a high degree of self interactions
+        How did inflation start?
+            inflation is a "fundamental scalar field"
+            FRW - evolution with normal matter
+                closed universe: collapses
+                open universe: expands forever
+            evolution in completely inhomogenous universe leads to singularities - difficult to describe
+            we can show that most 3-manifolds cannot globally collapse (i.e. inflation will occur somewhere)
+            lots of math to show that some regions of the universe keep expanding, regardless of singularities
+            therefore, since you can't have a completely maximally expanding surface, inflation somewhere in the universe will always occur
+            numerical simulations show that inflation will start even with singularities
+            inflation gives a universe a finite probability to become an infinite volume
+        Summary
+            developed a generalized model that matches all cosmological observation
+            allows exploration of interesting phenomonolegy of inflation
+    Comparison to condensed matter physics
+        for small "boxes", there are huge fluctuations in matter in the universe
+        for larger "boxes", the fluctuations are much smaller, universe becomes much more homogenous
+        the universe looks like a dielectric
+        on distances larger than 10Mpc, dark matter can be modelled like an effective fluid-like system
+
