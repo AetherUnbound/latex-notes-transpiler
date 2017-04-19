@@ -1,22 +1,27 @@
 import os
 import sys
+import subprocess
 
 
 def create_tex(template_file, input_file, output_file):
     with open(template_file, 'r') as template:
         template_lines = template.readlines()
-        template_lines = [line.strip('\n') for line in template_lines]
-        start_index = template_lines.index("%%%TEXT GOES HERE%%%")
-        tex_lines = transpile(input_file)
-        out_lines = template_lines[:start_index] + tex_lines + template_lines[start_index + 1:]
-        # print("\n".join(out_lines))
-        with open(output_file, 'w') as out:
-            out.write('\n'.join(out_lines))
+    template_lines = [line.strip('\n') for line in template_lines]
+    start_index = template_lines.index("%%%TEXT GOES HERE%%%")
+    tex_lines = transpile(input_file)
+    out_lines = template_lines[:start_index] + tex_lines + template_lines[start_index + 1:]
+    # print("\n".join(out_lines))
+    with open(output_file, 'w') as out:
+        out.write('\n'.join(out_lines))
+    subprocess.call(["pdflatex", output_file])
+
 
 
 def transpile(filename):
     with open(filename, 'r') as f:
-        lines = list(map(lambda x: x.replace("    ", "\t").strip('\n'), f.readlines()))
+        lines = list(map(lambda x: x.replace("    ", "\t").strip('\n').rstrip('\t'), f.readlines()))
+        while not len(lines[-1]):
+            lines.pop()
         return tex_body(lines)
 
 def tex_body(input):
@@ -27,7 +32,7 @@ def tex_body(input):
         if i == len(input):
             break
         if level == 0:
-            output.append("\\subsection*{" + input[i] + "}")
+            output.append("\\subsection*{" + input[i][0].upper() + input[i][1:] + "}")
             i += 1
             if i == len(input):
                 break
@@ -35,7 +40,7 @@ def tex_body(input):
         if curr_level > 0:
             out, i, level = to_itemize(input, i, curr_level)
             output.extend(out)
-        else: break
+        elif i == len(input): break
     return output
 
 
@@ -70,4 +75,8 @@ def to_itemize(input, loc, level):
 
 
 if __name__ == "__main__":
-    create_tex("template.tex", "example_notes_small.txt", "output.txt")
+    template = sys.argv[1]
+    notes = sys.argv[2]
+    output = sys.argv[3]
+    create_tex(template, notes, output)
+    # create_tex("template.tex", "example_notes_small.txt", "output.tex")
