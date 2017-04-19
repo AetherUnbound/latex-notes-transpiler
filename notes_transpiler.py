@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import sys
 import subprocess
@@ -16,13 +17,13 @@ def create_tex(template_file, input_file, output_file):
     subprocess.call(["pdflatex", output_file])
 
 
-
 def transpile(filename):
     with open(filename, 'r') as f:
         lines = list(map(lambda x: x.replace("    ", "\t").strip('\n').rstrip('\t'), f.readlines()))
         while not len(lines[-1]):
             lines.pop()
         return tex_body(lines)
+
 
 def tex_body(input):
     level = 0
@@ -75,6 +76,7 @@ def to_itemize(input, loc, level):
 
 
 if __name__ == "__main__":
+    # TODO: use argparser for better handling
     template = sys.argv[1]
     notes = sys.argv[2]
     output = sys.argv[3]
