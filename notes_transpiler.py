@@ -19,9 +19,10 @@ def create_tex(template_file, input_file, output_file):
 
 def transpile(filename):
     with open(filename, 'r') as f:
+        # Trim newlines, trailing tabs, and convert 4 spaces into tabs
         lines = list(map(lambda x: x.replace("    ", "\t").strip('\n').rstrip('\t'), f.readlines()))
-        while not len(lines[-1]):
-            lines.pop()
+        # Remove any empty strings
+        lines = list(filter(None, lines))
         return tex_body(lines)
 
 
@@ -59,17 +60,19 @@ def to_itemize(input, loc, level):
                 level = 0
                 break
             next_level = len(input[i]) - len(input[i].lstrip('\t'))
-            # go deeper
-            if (next_level > level):
+
+            # Go deeper
+            if next_level > level:
                 out, i, level = to_itemize(input, i, next_level)
                 output.extend(out)
 
-            elif(next_level < level):
+            # Otherwise end itemize and return to that level
+            elif next_level < level:
                 output.append("\t" * level + "\\end{itemize}")
                 level = next_level
                 return output, i, level
-            if (level == 0): break
-        if (level == 0):
+            if level == 0: break
+        if level == 0:
             output.append("\t" * (level + 1) + "\\end{itemize}")
             break
     return output, i, level
